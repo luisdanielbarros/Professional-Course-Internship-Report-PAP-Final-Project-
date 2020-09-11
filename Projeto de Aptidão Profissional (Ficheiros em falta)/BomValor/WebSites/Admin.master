@@ -1,0 +1,68 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+     <!--Bootstrap Core CSS-->
+    <link href="Assets/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <%--Custom CSS--%>
+    <link href="Assets/Geral.css" rel="stylesheet" />
+    <link href="Assets/Admin.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <title>Administração Supermercados Bomvalor</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Gestão da base de dados</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="AdminProdutos.aspx">Produtos</a>
+                    </li>
+                    <li>
+                        <a href="AdminPromocoes.aspx">Promoções</a>
+                    </li>
+                    <li>
+                        <a href="AdminMarcas.aspx">Marcas</a>
+                    </li>
+                    <li>
+                        <a href="AdminCategorias.aspx">Categorias</a>
+                    </li>
+                    <li>
+                        <a href="AdminSubcategorias.aspx">Subcategorias</a>
+                    </li>
+                    <li>
+                        <asp:LinkButton ID="LinkButtonTerminar" runat="server" Text="Saír" OnClick="LinkButtonTerminar_Click"></asp:LinkButton>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <br style="margin-bottom:50px;" />
+    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <%--Bootstrap Core JS--%>
+    <script src="Assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <%-- ContentPlaceHolder2 for scripts --%>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+
+    </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

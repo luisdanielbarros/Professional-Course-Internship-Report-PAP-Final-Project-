@@ -1,0 +1,1 @@
+﻿DBCC CHECKIDENT (Produtos, RESEED, 0);

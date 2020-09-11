@@ -1,0 +1,41 @@
+﻿body {
+    background-image: url('../Imagens/PaginasAdmin/background.jpeg');
+    background-size:100% auto;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+}
+#ListBoxSection
+{
+    position:absolute;
+    z-index:1;
+    height:20px;
+    border:none;
+    background-color:lightgrey;
+    border-radius:2px;
+}
+#ListBoxSection option
+{
+    display:inline-block;
+}
+.col-white
+{
+    background-color:white !important;
+    border-radius:5px;
+    border:1px solid lightgrey;
+}
+.col-filtering
+{
+    margin-top:20px;
+    padding-bottom:15px;
+}
+.col-gridview
+{
+    margin-top:20px;
+    padding-bottom:15px;
+}
+.adminform-validator
+{
+    font-size:14px;
+    font-weight:bold;
+    color:red;
+}

@@ -1,0 +1,51 @@
+﻿body {
+}
+/* Bootstrap */
+.no-padding-right
+{
+    padding-right:0px !important;
+}
+.no-padding-left
+{
+    padding-left:0px !important;
+}
+@media (max-width: 992px) 
+{ 
+    .col-sm-12-padding-top
+    {
+        padding-top:5px !important;
+    }
+    .col-sm-12-linebreak-medium
+    {
+        background-color:red !important;
+        margin-top:75px !important;
+    }
+}
+
+/* Controls */
+.form-validator
+{
+    font-size:12px;
+    font-weight:bold;
+}
+p
+{
+    margin-top:2px;
+    margin-bottom:0px;
+}
+.checkbox-control input[type="checkbox"]
+{
+    margin-right:5px;
+}
+.checkbox-control label
+{
+    display:inline;
+}
+.radiobuttonlist-control input[type="radio"]
+{
+    margin-right:5px;
+}
+.display-none
+{
+    display:none;
+}

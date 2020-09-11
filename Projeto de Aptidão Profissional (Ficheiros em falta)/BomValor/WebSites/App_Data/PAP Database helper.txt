@@ -1,0 +1,5 @@
+ContasTentativas
+Autenticado
+	0 -> Senha errada
+	1 -> Autenticado
+	2 -> Conta bloqueada

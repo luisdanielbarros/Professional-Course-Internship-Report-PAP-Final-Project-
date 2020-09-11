@@ -1,0 +1,560 @@
+﻿body {
+    background-color:white;
+}
+/*Slider*/
+.carousel-inner-div
+{
+    position:absolute;
+    display:block;
+    margin-top:20px;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+
+    background-color:rgba(0,0,0,0.4);
+    text-align:center;
+    font-size:18px;
+    font-family:Impact;
+    color:white;
+    text-shadow: 1px 1px black;
+}
+.carousel-inner-div p
+{
+    margin-bottom:2px;
+}
+.carousel-inner-div .small a:hover
+{
+    text-decoration:none;
+    cursor:pointer;
+    color:lightblue;
+}
+/*Filtros, Barra de Procura e Lista de Compras*/
+.listbox
+{
+    overflow:hidden;
+}
+.listbox option
+{
+    background-color:#f6f6f6;
+    border-bottom:1px solid lightgrey;
+}
+.dropdownlist
+{
+    display:block;
+    height:30px;
+    padding:0px 5px 0px 0px;
+    margin-top:5px;
+    border-radius:2px;    
+}
+.searchbar
+{
+    float:left;
+    height:40px;
+    line-height:40px;
+    font-size:16px;
+    border-radius:2px;
+}
+.searchbutton
+{
+    float:left;
+    height:40px;
+    width:40px;
+    margin-left:-2px;
+}
+.searchfilter
+{
+    float:left;
+    color:#333;
+}
+.searchfilter input[type="checkbox"] 
+{ 
+    margin-right: 5px;
+}
+.pop-up-div
+{
+    position:absolute;
+    z-index:10;
+    background-color:white;
+    border:1px solid lightgray;
+    border-radius:4px;
+    margin-top:50px;
+}
+.pop-up-div h4
+{
+    text-align:center;
+}
+.pop-up-div-outer
+{
+    position:fixed;
+    z-index:100;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.4);
+    margin-top:-20px;
+}
+.display-none
+{
+    display:none;
+}
+
+@media screen and (min-width: 1px)
+{
+    /* Produtos nas DataLists */
+    .datalist-div
+    {
+        display:block;
+        float:left;
+        width:350px;
+        height:400px;
+        margin-left:50px;
+        background-color:#f6f6f6;
+        overflow:hidden;
+        margin-bottom:20px;
+    }
+    .datalist-imagediv
+    {
+        display:block;
+        width:350px;
+        height:300px;
+        overflow:hidden;
+        background-image: url('../Imagens/PaginaProdutos/backgroundptabela.png');
+        background-size:100% 100%;
+        background-position:0px 0px;
+        background-repeat:no-repeat;
+    }
+    .datalist-imagediv .image
+    {
+        display:block;
+        width:300px;
+        overflow:hidden;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .datalist-promotiondiv
+    {
+        position:absolute;
+        display:block;
+        height:100px;
+        width:120px;
+        margin-left:230px;
+        margin-top:178px;
+        background-color:yellow;
+        text-align:center;
+        overflow:hidden;
+    }
+    .datalist-promotiondiv-box
+    {
+        float:left;
+        height:100%;
+        width:120px;
+    }
+    .datalist-promotiondiv-box .percentagediv
+    {
+        height:50%;
+        width:100%;
+        font-family:Impact;
+        font-size:40px;
+    }
+    .datalist-promotiondiv-box .pricediv
+    {
+        height:50%;
+        width:100%;
+        font-family:Impact;
+        font-size:20px;
+    }
+    .datalist-promotiondiv-box .pricediv .savediv
+    {
+        height:50%;
+        line-height:100%;
+    }
+    .datalist-promotiondiv-box .pricediv .previouspricediv
+    {
+        height:50%;
+        line-height:100%;
+        padding-left:5px;
+    }
+    .datalist-promotiondiv-box .pricediv .previouspricediv .pricelabel
+    {
+        font-size:16px;
+    }
+    .datalist-promotiondiv-box .pricediv .previouspricediv .price
+    {
+        text-decoration:line-through;
+    }
+    .datalist-innerdiv
+    {
+        display:block;
+        width:350px;
+        height:100px;
+    }
+    .datalist-innerdiv .txt-div
+    {
+        display:block;
+        height:40px;
+        line-height:20px;
+        width:350px;
+        margin-top:2px;
+        margin-bottom:0px;
+        text-align:center;
+        font-size:15px;
+    }
+    .datalist-innerdiv .txt-div .price
+    {
+        font-size:15px;
+    }
+    .datalist-innerdiv .control-div
+    {
+        height:60px;
+        width:230px;
+        padding-top:12px;
+        margin-left:auto;
+        margin-right:auto;
+        border-top:1px solid lightgrey;
+    }
+    .datalist-innerdiv .txtbox-div
+    {
+        float:left;
+        width:80px;
+        height:36px;
+    }
+    .datalist-innerdiv .txtbox-div .txtbox
+    {
+        text-align:right;
+        padding-right:10px;
+        font-size:16px;
+    }
+    .datalist-innerdiv .btns-small-div
+    {
+        float:left;
+        width:30px;
+        margin-top:0px;
+    }
+    .datalist-innerdiv .btn-small-sumandsubtraction
+    {
+        float:left;
+        padding:0;
+        font-size:12px;
+        text-align:center;
+        width:18px;
+        height:18px;
+    }
+    .datalist-innerdiv .btn-div
+    {
+       margin-left:5px;
+       float:left;
+       width:100px;
+       height:35px;
+    }
+    .control-fitin
+    {
+        width:100%;
+        height:100%;
+        padding:0;
+    }
+    /* Produtos na Div de pop-up de Selecção de variedade */
+    .datalist-div-2
+    {
+        margin-bottom:10px;
+        width:100%;
+        margin-left:0px;
+        height:335px;
+    }
+    .control-div-2
+    {
+        width:100%;
+        height:35px;
+        margin-top:5px;
+    }
+    .txtbox-div-2
+    {
+        width:80px;
+        height:40px;
+        float:left;
+        margin-left:225px;
+    }
+    .txtbox-2
+    {
+        text-align:right;
+        padding-right:10px;
+        font-size:16px;
+    }
+    .smallbtns-div-2
+    {
+        width:20px;
+        height:40px;
+        float:left;
+    }
+    .smallbtn1-div-2
+    {
+        width:20px;
+        height:20px;
+        display:block;
+        position:absolute;
+        margin-top:0px;
+    }
+    .smallbtn1-2
+    {
+        border-bottom-left-radius:0px;
+        border-bottom-right-radius:0px;
+        font-size:12px;
+    }
+    .smallbtn2-div-2
+    {
+        width:20px;
+        height:20px;
+        display:block;
+        position:absolute;
+        margin-top:20px;
+    }
+    .smallbtn2-2
+    {
+        border-top-left-radius:0px;
+        border-top-right-radius:0px;
+        font-size:12px;
+    }
+    .btn-div-2
+    {
+        width:100px;
+        height:40px;
+        float:left;
+        margin-left:5px;
+    }
+    /* Produtos na Div de pop-up de editar itens da lista de compras */
+    .control-div-3
+    {
+        width:100%;
+        height:375px;
+        margin-top:5px;
+    }
+}
+@media screen and (min-width: 1536px)
+{
+    /* Produtos nas DataLists */
+    .datalist-div
+    {
+        display:block;
+        float:left;
+        width:350px;
+        height:400px;
+        margin-left:50px;
+        background-color:#f6f6f6;
+        overflow:hidden;
+        margin-bottom:20px;
+    }
+    .datalist-imagediv
+    {
+        display:block;
+        width:350px;
+        height:300px;
+        overflow:hidden;
+        background-image: url('../Imagens/PaginaProdutos/backgroundptabela.png');
+        background-size:100% 100%;
+        background-position:0px 0px;
+        background-repeat:no-repeat;
+    }
+    .datalist-imagediv .image
+    {
+        display:block;
+        width:300px;
+        overflow:hidden;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .datalist-promotiondiv
+    {
+        position:absolute;
+        display:block;
+        height:100px;
+        width:120px;
+        margin-left:230px;
+        margin-top:178px;
+        background-color:yellow;
+        text-align:center;
+        overflow:hidden;
+    }
+    .datalist-promotiondiv-box
+    {
+        float:left;
+        height:100%;
+        width:120px;
+    }
+    .datalist-promotiondiv-box .percentagediv
+    {
+        height:50%;
+        width:100%;
+        font-family:Impact;
+        font-size:40px;
+    }
+    .datalist-promotiondiv-box .pricediv
+    {
+        height:50%;
+        width:100%;
+        font-family:Impact;
+        font-size:20px;
+    }
+    .datalist-promotiondiv-box .pricediv .savediv
+    {
+        height:50%;
+        line-height:100%;
+    }
+    .datalist-promotiondiv-box .pricediv .previouspricediv
+    {
+        height:50%;
+        line-height:100%;
+        padding-left:5px;
+    }
+    .datalist-promotiondiv-box .pricediv .previouspricediv .pricelabel
+    {
+        font-size:16px;
+    }
+    .datalist-promotiondiv-box .pricediv .previouspricediv .price
+    {
+        text-decoration:line-through;
+    }
+    .datalist-innerdiv
+    {
+        display:block;
+        width:350px;
+        height:100px;
+    }
+    .datalist-innerdiv .txt-div
+    {
+        display:block;
+        height:40px;
+        line-height:20px;
+        width:350px;
+        margin-top:2px;
+        margin-bottom:0px;
+        text-align:center;
+        font-size:15px;
+    }
+    .datalist-innerdiv .txt-div .price
+    {
+        font-size:15px;
+    }
+    .datalist-innerdiv .control-div
+    {
+        height:60px;
+        width:230px;
+        padding-top:12px;
+        margin-left:auto;
+        margin-right:auto;
+        border-top:1px solid lightgrey;
+    }
+    .datalist-innerdiv .txtbox-div
+    {
+        float:left;
+        width:80px;
+        height:36px;
+    }
+    .datalist-innerdiv .txtbox-div .txtbox
+    {
+        text-align:right;
+        padding-right:10px;
+        font-size:16px;
+    }
+    .datalist-innerdiv .btns-small-div
+    {
+        float:left;
+        width:30px;
+        margin-top:0px;
+    }
+    .datalist-innerdiv .btn-small-sumandsubtraction
+    {
+        float:left;
+        padding:0;
+        font-size:12px;
+        text-align:center;
+        width:18px;
+        height:18px;
+    }
+    .datalist-innerdiv .btn-div
+    {
+       margin-left:5px;
+       float:left;
+       width:100px;
+       height:35px;
+    }
+    .control-fitin
+    {
+        width:100%;
+        height:100%;
+        padding:0;
+    }
+    /* Produtos na Div de pop-up de Selecção de variedade */
+    .datalist-div-2
+    {
+        margin-bottom:10px;
+        width:100%;
+        margin-left:0px;
+        height:335px;
+    }
+    .control-div-2
+    {
+        width:100%;
+        height:35px;
+        margin-top:5px;
+    }
+    .txtbox-div-2
+    {
+        width:80px;
+        height:40px;
+        float:left;
+        margin-left:225px;
+    }
+    .txtbox-2
+    {
+        text-align:right;
+        padding-right:10px;
+        font-size:16px;
+    }
+    .smallbtns-div-2
+    {
+        width:20px;
+        height:40px;
+        float:left;
+    }
+    .smallbtn1-div-2
+    {
+        width:20px;
+        height:20px;
+        display:block;
+        position:absolute;
+        margin-top:0px;
+    }
+    .smallbtn1-2
+    {
+        border-bottom-left-radius:0px;
+        border-bottom-right-radius:0px;
+        font-size:12px;
+    }
+    .smallbtn2-div-2
+    {
+        width:20px;
+        height:20px;
+        display:block;
+        position:absolute;
+        margin-top:20px;
+    }
+    .smallbtn2-2
+    {
+        border-top-left-radius:0px;
+        border-top-right-radius:0px;
+        font-size:12px;
+    }
+    .btn-div-2
+    {
+        width:100px;
+        height:40px;
+        float:left;
+        margin-left:5px;
+    }
+    /* Produtos na Div de pop-up de editar itens da lista de compras */
+    .control-div-3
+    {
+        width:100%;
+        height:375px;
+        margin-top:5px;
+    }
+}

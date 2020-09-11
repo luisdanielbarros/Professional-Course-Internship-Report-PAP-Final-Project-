@@ -1,0 +1,14 @@
+﻿body {
+    background-image: url('../Imagens/PaginaLogin/background.jpeg');
+    background-size:100% auto;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+}
+/*Login.aspx*/
+@media (max-height: 864px) 
+{
+    .login-form
+    {
+        margin-top:100px;
+    }
+}

@@ -1,0 +1,218 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/Admin.master" AutoEventWireup="true" CodeFile="Admin.aspx.cs" Inherits="Admin" MaintainScrollPositionOnPostBack="true" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+
+        <!-- Bootstrap Core CSS -->
+        <link href="Css/startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- Custom CSS -->
+        <link href="Css/startbootstrap-sb-admin-2-gh-pages/dist/css/sb-admin-2.min.css" rel="stylesheet" />
+        <link href="Css/Admin.css" rel="stylesheet" />
+    <title>Gestão de Produtos</title>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+        <div class="container-fuid" style="padding-left:25px;padding-bottom:5px;">
+            <br style="margin-bottom:50px;" />
+            <div class="row">
+                <div class="col-md-3" style="border:1px solid lightgrey;">
+                    <div class="form-group">
+                    <h4>Colectivos de Produtos</h4>
+                    </div>
+                    <div class="form-group">
+                        <label><asp:Label ID="LabelIPId" runat="server" Text=""></asp:Label></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Nome do Colectivo de Produtos</label>
+                        <asp:TextBox class="form-control" ID="TextBoxIPNome" runat="server"></asp:TextBox>
+                        <p class="help-block" style="color:red;font-weight:bold;"><asp:RequiredFieldValidator ID="RequiredFieldValidatorIPNome" runat="server" ErrorMessage="Preencha o nome." ControlToValidate="TextBoxIPNome" ValidationGroup="InserirProduto" Display="Dynamic"></asp:RequiredFieldValidator></p>
+                   </div>
+                   <div class="form-group">
+                       <label>Marca</label>
+                       <asp:DropDownList class="form-control" ID="DropDownListIPMarca" runat="server" AutoPostBack="True" DataSourceID="SqlDataSourceIPMarca" DataTextField="Marca" DataValueField="Id_ProdutosMarcas" ValidationGroup="InserirProduto"></asp:DropDownList>
+                       <asp:SqlDataSource ID="SqlDataSourceIPMarca" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT * FROM [ProdutosMarcas]"></asp:SqlDataSource>
+                   </div>
+                   <div class="form-group">
+                       <label>Categoria</label>
+                       <asp:DropDownList class="form-control" ID="DropDownListIPCategoria" runat="server" AutoPostBack="True" DataSourceID="SqlDataSourceIPCategoria" DataTextField="Categoria" DataValueField="Id_ProdutosCategorias" ValidationGroup="InserirProduto" OnSelectedIndexChanged="DropDownListIPCategoria_SelectedIndexChanged"></asp:DropDownList>
+                       <asp:SqlDataSource ID="SqlDataSourceIPCategoria" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT * FROM [ProdutosCategorias]"></asp:SqlDataSource>
+                   </div>
+                   <div class="form-group">
+                       <label>Subcategoria</label>
+                       <asp:DropDownList class="form-control" ID="DropDownListIPSubcategoria" runat="server" DataSourceID="SqlDataSourceIPSubcategoria" DataTextField="Subcategoria" DataValueField="Id_ProdutosSubcategorias" AutoPostBack="True" ValidationGroup="InserirProduto"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSourceIPSubcategoria" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT * FROM [ProdutosSubcategorias] WHERE ([FKId_ProdutosCategorias] = @FKId_ProdutosCategorias)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="DropDownListIPCategoria" Name="FKId_ProdutosCategorias" PropertyName="SelectedValue" Type="int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                   </div>
+                    <div class="form-group">
+                        <label>Modo de venda (à unidade ou ao peso)</label>
+                        <asp:RadioButtonList class="form-control" ID="RadioButtonListIPPesoouUnid" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" OnSelectedIndexChanged="RadioButtonListIPPesoouUnid_SelectedIndexChanged" ValidationGroup="InserirProduto">
+                            <asp:ListItem style="margin-right:25px;" Value="0">Peso</asp:ListItem>
+                            <asp:ListItem Value="1">Unidade</asp:ListItem>
+                        </asp:RadioButtonList>
+                        <p class="help-block" style="color:red;font-weight:bold;"><asp:RequiredFieldValidator ID="RequiredFieldValidatorIPPesoouInid" runat="server" ControlToValidate="RadioButtonListIPPesoouUnid" ErrorMessage="Escolha a opção de venda." ValidationGroup="InserirProduto" Display="Dynamic"></asp:RequiredFieldValidator></p>
+                   </div>
+                   <div class="form-group">
+                       <label>Preço</label>
+                       <p><asp:TextBox class="form-control" style="display:inline-block;width:40%;" ID="TextBoxIPPreço" PlaceHolder="0.99" runat="server" ValidationGroup="InserirProduto"></asp:TextBox>
+                        <asp:Label style="display:inline-block;width:40%;" ID="LabelIPPreçoporPesoouUnid" runat="server"></asp:Label></p>
+                        <p class="help-block" style="font-size:12px;">(Nota: Separe sempre as casas decimais por pontos ".", não use  vírgulas ",").</p>
+                        <p class="help-block" style="color:red;font-weight:bold;"><asp:RequiredFieldValidator ID="RequiredFieldValidatorIPPreço" runat="server" ControlToValidate="TextBoxIPPreço" ErrorMessage="Preencha o preço." ValidationGroup="InserirProduto" Display="Dynamic"></asp:RequiredFieldValidator>                
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidatorIPPreço" runat="server" ErrorMessage="Número inválido. (Use pontos para as casas decimais)." ValidationExpression="[+-]?([0-9]*[.])?[0-9]+" ValidationGroup="InserirProduto" ControlToValidate="TextBoxIPPreço" Display="Dynamic"></asp:RegularExpressionValidator></p>
+                   </div>
+                   <div class="form-group">
+                       <label>Quantidade por unidade.</label><br />
+                       <asp:TextBox class="form-control" style="display:inline-block;width:40%;" ID="TextBoxIPQuantddporUnid" PlaceHolder="250" runat="server" ValidationGroup="InserirProduto"></asp:TextBox>
+                       <asp:DropDownList class="form-control" style="display:inline-block;width:40%;" ID="DropDownListIPQuantddporUnid" runat="server">
+                            <asp:ListItem Value="g">g - gramas</asp:ListItem>
+                            <asp:ListItem Value="Kg">Kg - quilógramas</asp:ListItem>
+                            <asp:ListItem Value="L">L - litros</asp:ListItem>
+                            <asp:ListItem Value="cl">cl - centilitros</asp:ListItem>
+                            <asp:ListItem Value="ml">ml - milílitros</asp:ListItem>
+                        </asp:DropDownList>
+                        <p class="help-block" style="font-size:12px;">(Nota: Este campo não aceita casas decimais, arredonde os valores).</p>
+                        <p class="help-block" style="color:red;font-weight:bold;"><asp:RequiredFieldValidator ID="RequiredFieldValidatorIPQuantddporUnid" runat="server" ControlToValidate="TextBoxIPQuantddporUnid" ErrorMessage="Preencha a quantidade por unidade." ValidationGroup="InserirProduto" Display="Dynamic"></asp:RequiredFieldValidator></p>
+                   </div>
+                   <div class="form-group">
+                       <label>Escolha a imagem. (Faça-o após o preenchimento de todos os campos).</label>
+                       <asp:FileUpload class="form-control" style="padding:6px 0px 40px 5px;" ID="FileUploadIPImagem" runat="server"/>
+                       <p class="help-block" style="color:red;font-weight:bold;"><asp:RequiredFieldValidator ID="RequiredFieldValidatorIPImagem" runat="server" ControlToValidate="FileUploadIPImagem" ErrorMessage="Escolha a imagem." ValidationGroup="InserirProduto" Display="Dynamic"></asp:RequiredFieldValidator></p>
+                   </div>
+                    <div class="form-group" style="font-size:0px;">
+                        <asp:Button class="form-control" style="display:inline-block;width:20%; margin-left:1%;text-align:center;" ID="ButtonIP" runat="server" OnClick="ButtonIP_Click" Text="Inserir" ValidationGroup="InserirProduto" />
+                        <asp:Button class="form-control" style="display:inline-block;width:35%; margin-left:1%;text-align:center;" ID="ButtonEP" runat="server" OnClick="ButtonEP_Click" Text="Atualizar" ValidationGroup="EditarProduto" />
+                        <asp:Button class="form-control" style="display:inline-block;width:20%; margin-left:1%;text-align:center;" ID="ButtonAP" runat="server" OnClick="ButtonAP_Click" Text="Apagar" ValidationGroup="EditarProduto" />
+                        <asp:Button class="form-control" style="display:inline-block;width:35%; margin-left:1%;text-align:center;" ID="ButtonEPTS" runat="server" OnClick="ButtonEPTS_Click" Text="Voltar a Inserir" />
+                    </div>
+                </div>
+                <div class="col-md-3" style="border:1px solid lightgrey;">
+                    <div class="form-group">
+                        <h4>Produtos Específicos</h4>
+                    </div>
+                    <div class="form-group">
+                        <asp:CheckBox class="checkbox-control" ID="CheckBoxIPVariedade" runat="server" Text="Não tem quaisquer variedades." AutoPostBack="true" OnCheckedChanged="CheckBoxIPVariedade_CheckedChanged"/>
+                   </div>
+                    <div class="form-group">
+                        <label>Nome do Produto em Específico</label>
+                        <asp:TextBox class="form-control" ID="TextBoxIPVariedade" runat="server" ValidationGroup="InserirProduto"></asp:TextBox>
+                        <p style="font-size:10px;">(Nota: este será o nome do seu produto em específico. Por exemplo: se o seu colectivo de produtos tiver o <span style="font-weight:bold;" >nome</span> de "Iogurtes de Morango ou Baunilha", deverá escolher o <span style="font-weight:bold;" >nome</span> de "Iogurte de Morango" para este campo).</p>
+<%--                        <p class="help-block" style="color:red;font-weight:bold;"><asp:RequiredFieldValidator ID="RequiredFieldValidatorIPVariedade" runat="server" ErrorMessage="Preencha o nome." ControlToValidate="TextBoxIPVariedade" ValidationGroup="InserirVariedade"></asp:RequiredFieldValidator></p>--%>
+                    </div>
+                    <div class="form-group">
+                        <asp:Button class="form-control" style="display:inline-block;width:35%;margin-left:1%;" ID="ButtonIPIVariedade" runat="server" Text="Adicionar à lista" OnClick="ButtonIPIVariedade_Click" ValidationGroup="InserirVariedade" />
+                        <asp:Button class="form-control" style="display:inline-block;width:30%;margin-left:1%;" ID="ButtonIPAVariedade" runat="server" Text="Apagar lista" OnClick="ButtonIPAVariedade_Click" />
+                    </div>
+                    <div class="form-group">
+                        <asp:BulletedList class="form-control" ID="BulletedListIPVariedades" runat="server"></asp:BulletedList>
+                    </div>
+               </div>
+
+                <div class="col-md-12">
+                    <%-- Gridview de Produtos --%>
+                    <div class="form-group" style="margin:5px;">
+                        <h4 style="display:inline-block;"> Colectivos de Produtos</h4>
+                        <asp:Button class="btn btn-default" style="display:inline-block;width:8%;padding:6px 0;float:right;margin-right:2px;" ID="Button1" runat="server" Text="Remover Filtro" OnClick="ButtonRemoverFiltro_Click" ValidationGroup="Procura"/>
+                        <asp:Button class="btn btn-primary" style="display:inline-block;width:5%;padding:6px 0;float:right;margin-right:2px;" ID="ButtonFiltrar" runat="server" Text="Procurar" OnClick="ButtonFiltrar_Click" ValidationGroup="Procura"/>
+                        <asp:TextBox class="form-control" style="display:inline-block;width:20%;float:right;margin-right:2px;" ID="TextBoxFiltrar" runat="server" ValidationGroup="Procura"></asp:TextBox>
+                        <asp:DropDownList class="form-control" style="display:inline-block;width:15%;float:right;margin-right:2px;" ID="DropDownListFiltrarSubcategoria" runat="server"  DataSourceID="SqlDataSourceFiltrarSubcategoria" DataTextField="Subcategoria" DataValueField="Id_ProdutosSubcategorias" AutoPostBack="True"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSourceFiltrarSubcategoria" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="SELECT * FROM [ProdutosSubcategorias] WHERE ([FKId_ProdutosCategorias] = @FKId_ProdutosCategorias)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="DropDownListFiltrarCategoria" Name="FKId_ProdutosCategorias" PropertyName="SelectedValue" Type="int32" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:DropDownList class="form-control" style="display:inline-block;width:15%;float:right;margin-right:2px;" ID="DropDownListFiltrarCategoria" runat="server" DataSourceID="SqlDataSourceIPCategoria" DataTextField="Categoria" DataValueField="Id_ProdutosCategorias" ValidationGroup="InserirProduto" AutoPostBack="True" OnSelectedIndexChanged="DropDownListFiltrarCategoria_SelectedIndexChanged"></asp:DropDownList>
+                    </div>
+                    <asp:GridView ID="GridViewIP" runat="server" class="col-md-12" style="text-align:left;" AutoGenerateColumns="False" DataSourceID="SqlDataSourceProdutos" PageSize="10" CellPadding="4" AllowPaging="True" AllowSorting="True" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridViewIP_SelectedIndexChanged" DataKeyNames="Id,Id_ProdutosMarcas,Id_ProdutosCategorias,Id_ProdutosSubcategorias">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <Columns>
+                            <asp:CommandField ShowSelectButton="True" SelectText="Seleccionar" />
+                            <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
+                            <asp:BoundField DataField="Nome" HeaderText="Nome" SortExpression="Nome" HtmlEncode="false" />
+                            <asp:TemplateField HeaderText="Imagem" SortExpression="Imagem">  
+                                <ItemTemplate>
+                                    <asp:Image style="height:25px;width:25px;" ID="GridViewIPImagem" runat="server"
+                                    ImageUrl='<%# Eval("Imagem") %>'/> 
+                                </ItemTemplate>  
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="Imagem" HeaderText="Diretório da Imagem" />
+                            <asp:BoundField DataField="Marca" HeaderText="Marca" HtmlEncode="false" />
+                            <asp:BoundField DataField="Categoria" HeaderText="Categoria" HtmlEncode="false" />
+                            <asp:BoundField DataField="Subcategoria" HeaderText="Subcategoria" HtmlEncode="false" />
+                            <asp:BoundField DataField="Preço" HeaderText="Preço" SortExpression="Preço" />
+                            <asp:BoundField DataField="QuantddporUnid" HeaderText="Quantidade" />
+                            <asp:BoundField DataField="Id_ProdutosMarcas">
+                                <ItemStyle CssClass="display-none" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Id_ProdutosCategorias">
+                                <ItemStyle CssClass="display-none" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="Id_ProdutosSubcategorias">
+                                <ItemStyle CssClass="display-none" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="VendidoaoPesoouUnid">
+                                <ItemStyle CssClass="display-none" />
+                            </asp:BoundField>
+                        </Columns>
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                    <asp:SqlDataSource ID="SqlDataSourceProdutos" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>"  SelectCommand="
+                            SELECT Produtos.Id_Produtos AS Id, Produtos.Nome,  Produtos.Imagem, ProdutosMarcas.Marca, ProdutosCategorias.Categoria, ProdutosSubcategorias.Subcategoria, Produtos.Preço, Produtos.QuantddporUnid, ProdutosMarcas.Id_ProdutosMarcas, ProdutosCategorias.Id_ProdutosCategorias, ProdutosSubcategorias.Id_ProdutosSubcategorias, Produtos.VendidoaoPesoouUnid 
+                            FROM Produtos
+                            LEFT JOIN ProdutosMarcas ON Produtos.Marca = ProdutosMarcas.Id_ProdutosMarcas
+                            LEFT JOIN ProdutosCategorias ON Produtos.Categoria = ProdutosCategorias.Id_ProdutosCategorias
+                            LEFT JOIN ProdutosSubcategorias ON Produtos.Subcategoria = ProdutosSubcategorias.Id_ProdutosSubcategorias 
+                            ORDER BY Produtos.Nome ASC">
+                    </asp:SqlDataSource>
+                    <%-- Gridview de Variedades de Produtos --%>
+                    <h4>Produtos Específicos</h4>
+                    <asp:GridView ID="GridViewIPV" class="col-md-12" style="text-align:left;" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSourceVariedades" PageSize="10" CellPadding="4" ForeColor="#333333" GridLines="None" DataKeyNames="Id_ProdutosVariedades" >
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <Columns>
+                            <asp:CommandField ShowSelectButton="False" />
+                            <asp:BoundField DataField="Id_ProdutosVariedades" HeaderText="Id" ReadOnly="True" />
+                            <asp:TemplateField HeaderText="Imagem">
+                                <ItemTemplate>
+                                    <asp:Image style="height:25px;width:25px;" ID="GridViewIPVImagem" runat="server"
+                                    ImageUrl='<%# Eval("Imagem") %>'/> 
+                                </ItemTemplate>  
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Produto">
+                                <ItemTemplate>
+                                    <%# String.Format("{0} {1} {2} {3}", Eval("Nome"), Eval("Marca"), Eval("Categoria"), Eval("Subcategoria")) %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:BoundField DataField="Variedade" HeaderText="Variedade" />
+                            <asp:BoundField DataField="Inventario" HeaderText="Inventário" />
+                        </Columns>
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                    <asp:SqlDataSource ID="SqlDataSourceVariedades" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" SelectCommand="
+                        select Id_ProdutosVariedades, Nome, Imagem, ProdutosMarcas.Marca, ProdutosCategorias.Categoria, ProdutosSubcategorias.Subcategoria, QuantddporUnid, Variedade, Inventario from ProdutosVariedades
+                        left join Produtos on ProdutosVariedades.FKId_Produtos = Produtos.Id_Produtos
+                        left join ProdutosMarcas on Produtos.Marca = ProdutosMarcas.Id_ProdutosMarcas
+                        left join ProdutosCategorias on Produtos.Categoria = ProdutosCategorias.Id_ProdutosCategorias
+                        left join ProdutosSubcategorias on Produtos.Subcategoria = ProdutosSubcategorias.Id_ProdutosSubcategorias
+                        order by Nome ASC">
+                    </asp:SqlDataSource>
+                </div>
+            </div>
+        </div>
+</asp:Content>
